@@ -41,6 +41,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   pasien.associate = function(models) {
+    pasien.hasMany(models.minumobats,{ onDelete: 'cascade' },{ constraints: true}, { foreginKey: "pasien"})
   };
 
   return pasien;

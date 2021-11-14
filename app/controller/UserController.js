@@ -1,5 +1,5 @@
 const { users,validates } = require('../models/index');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const authConfig = require('../../config/auth');
 const apiResponse = require("../helpers/apiResponse");

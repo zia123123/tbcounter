@@ -1,5 +1,5 @@
 const { pasiens } = require('../models/index');
-const bcrypt = require('bcrypt'); 
+const bcrypt = require('bcryptjs'); 
 const authConfig = require('../../config/auth');  
 const apiResponse = require("../helpers/apiResponse");
 

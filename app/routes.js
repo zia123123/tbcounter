@@ -24,6 +24,11 @@ const CalonController = require('./controller/CalonController');
 const PasienController = require('./controller/PasienController');
 
 
+const MinumObatController = require('./controller/MinumObatController');
+
+const FeedsController = require('./controller/FeedsController');
+
+
 const multer = require('multer')
 const multerConf = {
     storage: multer.diskStorage({
@@ -126,5 +131,17 @@ router.get('/api/pasien/:id',PasienController.find, PasienController.show);
 
 router.patch('/api/pasien/updateobat/:id',PasienController.find, PasienController.updateJumlahObat);              
 router.patch('/api/pasien/updatehari/:id',PasienController.find, PasienController.updateJumlahHari);              
+
+
+//minum
+router.post('/api/minum/create', MinumObatController.create);
+router.get('/api/minum/pasien/:pasienId', MinumObatController.indexMinum);
+
+
+//feeds
+router.post('/api/feed/create', FeedsController.create);
+router.get('/api/feed/', FeedsController.index);
+router.get('/api/feed/:id',FeedsController.find, FeedsController.show);
+router.delete('/api/feed/delete/:id',FeedsController.find, FeedsController.delete);
 
 module.exports = router;
