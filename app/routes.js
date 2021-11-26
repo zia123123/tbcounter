@@ -126,6 +126,10 @@ router.get('/api/bar/:voteid', VotedController.indexBar);
 router.post('/api/pasien/create', PasienController.create);
 router.post('/api/pasien/login', PasienController.sign);
 router.get('/api/pasien/', PasienController.index);
+
+router.get('/api/pasien/jumlah', PasienController.jumlahpasien);
+router.get('/api/pasien/jumlahminum', PasienController.jumlahpasienminum);
+
 router.patch('/api/pasien/update/:id',PasienController.find, PasienController.update);
 router.get('/api/pasien/:id',PasienController.find, PasienController.show);    
 
@@ -135,6 +139,7 @@ router.patch('/api/pasien/updatehari/:id',PasienController.find, PasienControlle
 
 //minum
 router.post('/api/minum/create', MinumObatController.create);
+router.get('/api/minum/index', MinumObatController.indexMinumsemua);
 router.get('/api/minum/pasien/:pasienId', MinumObatController.indexMinum);
 
 

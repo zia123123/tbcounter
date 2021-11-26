@@ -1,5 +1,8 @@
-const { pasiens } = require('../models/index');
+const { pasiens,minumobats } = require('../models/index');
 const bcrypt = require('bcryptjs'); 
+const { Op } = require("sequelize");
+const TODAY_START = new Date().setHours(0, 0, 0, 0);
+const NOW = new Date();
 const authConfig = require('../../config/auth');  
 const apiResponse = require("../helpers/apiResponse");
 
@@ -48,8 +51,8 @@ module.exports = {
             notelppasien: req.body.notelppasien,
             notelppmo: req.body.notelppmo,
             pekerjaan: req.body.pekerjaan,
-            jumlahhari: 0,
-            jumlahobat: 0,
+            jumlahhari: req.body.jumlahhari,
+            jumlahobat: req.body.jumlahobat,
             status: false,
         }).then(result => {
             return apiResponse.successResponseWithData(res, "SUCCESS CREATE", result);
@@ -68,6 +71,17 @@ module.exports = {
         }
     },
 
+ 
+
+    async jumlah(req, res) {
+        let result = await pasiens.count()({  
+        }).then(result => {
+            return apiResponse.successResponseWithData(res, "SUCCESS", result);
+            }).catch(function (err){
+                return apiResponse.ErrorResponse(res, err);
+            });
+    },
+
     async index(req, res) {
         let result = await pasiens.findAll({  
         }).then(result => {
@@ -76,6 +90,30 @@ module.exports = {
                 return apiResponse.ErrorResponse(res, err);
             });
     },
+    async jumlahpasien(req, res) {
+        let result = await pasiens.count().then(result => {
+            return apiResponse.successResponseWithData(res, "SUCCESS", result);
+            }).catch(function (err){
+                return apiResponse.ErrorResponse(res, err);
+            });
+    },
+    async jumlahpasienminum(req, res) {
+       
+        let result = await minumobats.count({
+            where: {
+                createdAt: { 
+                  [Op.gt]: TODAY_START,
+                  [Op.lt]: NOW
+                },
+              },
+        }).then(result => {
+            return apiResponse.successResponseWithData(res, "SUCCESS", result);
+            }).catch(function (err){
+                return apiResponse.ErrorResponse(res, err);
+            });
+    },
+
+
 
     // Show
     async show(req, res) {
@@ -91,6 +129,7 @@ module.exports = {
         req.pasien.notelppasien= req.body.notelppasien,
         req.pasien.notelppmo= req.body.notelppmo,
         req.pasien.pekerjaan= req.body.pekerjaan,
+        req.status.pekerjaan= req.body.status,
         req.pasien.jumlahhari= req.body.jumlahhari,
         req.pasien.jumlahobat= req.body.jumlahobat,
         req.pasien.save().then(pasien => {
@@ -99,6 +138,13 @@ module.exports = {
     },
 
     async updateJumlahHari(req, res) {
+      req.pasien.jumlahhari= req.body.jumlahhari,
+      req.pasien.save().then(pasien => {
+      return apiResponse.successResponseWithData(res, "SUCCESS", pasien);
+      })
+  },
+
+   async updateJumlahHari(req, res) {
       req.pasien.jumlahhari= req.body.jumlahhari,
       req.pasien.save().then(pasien => {
       return apiResponse.successResponseWithData(res, "SUCCESS", pasien);

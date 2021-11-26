@@ -13,7 +13,7 @@ module.exports = {
   username: process.env.DB_USERNAME || "root",
   password: process.env.DB_PASSWORD ||  "@Zia123123",
   database: process.env.DB_DATABASE || "tbccounter",
-  host: process.env.DB_HOST ||"153.92.5.226",
+  host: process.env.DB_HOST ||"153.92.5.226", 
   dialect: process.env.DB_DIALECT || "mysql",
 
 

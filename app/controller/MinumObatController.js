@@ -38,5 +38,15 @@ module.exports = {
             });
     },
 
+    async indexMinumsemua(req, res) {
+        let result = await minumobats.findAll({
+            
+        }).then(result => {
+            return apiResponse.successResponseWithData(res, "SUCCESS", result);
+            }).catch(function (err){
+                return apiResponse.ErrorResponse(res, err);
+            });
+    },
+
   
 }
