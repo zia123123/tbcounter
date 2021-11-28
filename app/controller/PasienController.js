@@ -1,5 +1,7 @@
 const { pasiens,minumobats } = require('../models/index');
 const bcrypt = require('bcryptjs'); 
+const moment = require('moment');
+
 const { Op } = require("sequelize");
 const TODAY_START = new Date().setHours(0, 0, 0, 0);
 const NOW = new Date();
@@ -102,8 +104,7 @@ module.exports = {
         let result = await minumobats.count({
             where: {
                 createdAt: { 
-                  [Op.gt]: TODAY_START,
-                  [Op.lt]: NOW
+                    [Op.gte]: moment().subtract(1, 'days').toDate()
                 },
               },
         }).then(result => {
