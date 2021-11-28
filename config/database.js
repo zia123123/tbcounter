@@ -3,18 +3,18 @@ require('dotenv').config()
 module.exports = {
 
   // Configuracion de DB
-  username: process.env.DB_USERNAME || "root",
-  password: process.env.DB_PASSWORD ||  "",
-  database: process.env.DB_DATABASE || "tbccounter",
-  host: process.env.DB_HOST ||"127.0.0.1",
-  dialect: process.env.DB_DIALECT || "mysql",
-
-
   // username: process.env.DB_USERNAME || "root",
-  // password: process.env.DB_PASSWORD ||  "@Zia123123",
+  // password: process.env.DB_PASSWORD ||  "",
   // database: process.env.DB_DATABASE || "tbccounter",
-  // host: process.env.DB_HOST ||"153.92.5.226", 
+  // host: process.env.DB_HOST ||"127.0.0.1",
   // dialect: process.env.DB_DIALECT || "mysql",
+
+
+  username: process.env.DB_USERNAME || "root",
+  password: process.env.DB_PASSWORD ||  "@Zia123123",
+  database: process.env.DB_DATABASE || "tbccounter",
+  host: process.env.DB_HOST ||"153.92.5.226", 
+  dialect: process.env.DB_DIALECT || "mysql",
 
 
   
