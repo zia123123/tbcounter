@@ -40,7 +40,12 @@ module.exports = {
 
     async indexMinumsemua(req, res) {
         let result = await minumobats.findAll({
-            
+           
+            include: [ 
+                { model: pasiens,
+                    attributes: ['nama','notelppasien'],
+                }
+            ]
         }).then(result => {
             return apiResponse.successResponseWithData(res, "SUCCESS", result);
             }).catch(function (err){
