@@ -55,7 +55,7 @@ module.exports = {
             pekerjaan: req.body.pekerjaan,
             jumlahhari: req.body.jumlahhari,
             jumlahobat: req.body.jumlahobat,
-            status: false,
+            status: req.body.status,
         }).then(result => {
             return apiResponse.successResponseWithData(res, "SUCCESS CREATE", result);
         }).catch(function (err)  {  
@@ -130,7 +130,7 @@ module.exports = {
         req.pasien.notelppasien= req.body.notelppasien,
         req.pasien.notelppmo= req.body.notelppmo,
         req.pasien.pekerjaan= req.body.pekerjaan,
-        req.pasien.pekerjaan= req.body.status,
+        req.pasien.status= req.body.status,
         req.pasien.jumlahhari= req.body.jumlahhari,
         req.pasien.jumlahobat= req.body.jumlahobat,
         req.pasien.save().then(pasien => {
